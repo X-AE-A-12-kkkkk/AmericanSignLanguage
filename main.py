@@ -7,7 +7,7 @@ from app_files import calc_landmark_list, draw_info_text, draw_landmarks, get_ar
 
 
 def main():
-    args = get_args()
+    args = get_args() # pega os parâmetros padrões
 
     cap_device = args.device
     cap_width = args.width
@@ -17,11 +17,11 @@ def main():
     min_detection_confidence = args.min_detection_confidence
     min_tracking_confidence = args.min_tracking_confidence
 
-    cap = cv.VideoCapture(cap_device)
+    cap = cv.VideoCapture(cap_device) # instancia um objeto (o vídeo) e define a sua resolução
     cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
-    cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
+    cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height) 
 
-    mp_hands = mp.solutions.hands
+    mp_hands = mp.solutions.hands # instancia um objeto (mapeamento das mãos)
     hands = mp_hands.Hands(
         static_image_mode=use_static_image_mode,
         max_num_hands=2,
