@@ -5,10 +5,8 @@ import mediapipe as mp
 from model import KeyPointClassifier
 from app_files import calc_landmark_list, draw_info_text, draw_landmarks, get_args, pre_process_landmark
 
-
 def main():
     args = get_args() # pega os parâmetros padrões
-
     cap_device = args.device
     cap_width = args.width
     cap_height = args.height
@@ -36,7 +34,6 @@ def main():
         keypoint_classifier_labels = [
             row[0] for row in keypoint_classifier_labels
         ]
-
     while True:
         key = cv.waitKey(10)
         if key == 27:  # ESC
@@ -47,8 +44,6 @@ def main():
             break
         image = cv.flip(image, 1) 
         debug_image = copy.deepcopy(image)
-        # print(debug_image.shape)
-        # cv.imshow("debug_image",debug_image)
         image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 
         image.flags.writeable = False
@@ -61,15 +56,16 @@ def main():
                 pre_processed_landmark_list = pre_process_landmark(landmark_list)
 
                 hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
-
                 debug_image = draw_landmarks(debug_image, landmark_list)
 
                 debug_image = draw_info_text(
                     debug_image,
                     handedness,
                     keypoint_classifier_labels[hand_sign_id])
+                print(keypoint_classifier_labels[hand_sign_id])
 
         cv.imshow('Leitor de Libras', debug_image)
+       
 
     cap.release()
     cv.destroyAllWindows()

@@ -1,6 +1,5 @@
 from keras.models import load_model
 from sklearn.metrics import classification_report, confusion_matrix
-import pickle
 import numpy as np
 import time
 import matplotlib.pyplot as plt
@@ -8,7 +7,7 @@ import matplotlib.pyplot as plt
 
 def plot_confusion_matrix(cm,
                           target_names,
-                          title='Confusion matrix',
+                          title='Matriz de confusão',
                           cmap=None,
                           normalize=True):
     """

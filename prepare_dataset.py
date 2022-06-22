@@ -46,16 +46,12 @@ def main():
         image.flags.writeable = False
         results = hands.process(image)
         image.flags.writeable = True
-        # cv.imshow("results",results)
-        # print(type(results))
-        # print(results)
 
         if results.multi_hand_landmarks is not None:
             for hand_landmarks in results.multi_hand_landmarks :                               
                 landmark_list = calc_landmark_list(debug_image, hand_landmarks)
                 pre_processed_landmark_list = pre_process_landmark(landmark_list)
                 logging_csv(number, mode, pre_processed_landmark_list)
-                # logging_csv(number, mode, landmark_list)
                 debug_image = draw_landmarks(debug_image, landmark_list)
                 info_text="Press key 0-9"
                 cv.putText(debug_image, info_text, (10, 60), cv.FONT_HERSHEY_SIMPLEX, 1.0, (196, 161, 33), 1, cv.LINE_AA)
