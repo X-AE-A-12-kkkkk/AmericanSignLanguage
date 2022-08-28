@@ -193,5 +193,6 @@ def draw_info_text(image, handedness, hand_sign_text):
     if hand_sign_text != "":
         info_text = "Letra prevista" + ':' + hand_sign_text
 
-    cv.putText(image, info_text, (10, 60), cv.FONT_HERSHEY_SIMPLEX, 1.0, (196, 255, 255), 2, cv.LINE_AA)
+    cv.putText(image, info_text, (10, 60), cv.FONT_HERSHEY_SIMPLEX, 1.0, (225, 105, 65), 2, cv.LINE_AA)
+    
     return image
